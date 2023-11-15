@@ -21,7 +21,7 @@ public class Main {
         int apartmentsEntranceCount = floorQuantity * 4;
         int apartmentsCount = apartmentsEntranceCount * entrancesQuantity;
         int entrancesCount = (apartment - 1) / apartmentsEntranceCount + 1;
-        final int apartmensQuantityFloor = 4;
+        final int apartmentsQuantityFloor = 4;
 
         if (apartment > apartmentsCount) {
             System.out.println("err");
@@ -30,13 +30,13 @@ public class Main {
 
         int floorCount;
 
-        if (apartment % apartmensQuantityFloor == 0) {
-            floorCount = (apartment / apartmensQuantityFloor) - floorQuantity * (entrancesCount - 1);
+        if (apartment % apartmentsQuantityFloor == 0) {
+            floorCount = (apartment / apartmentsQuantityFloor) - floorQuantity * (entrancesCount - 1);
         } else {
-            floorCount = (apartment / apartmensQuantityFloor + 1) - floorQuantity * (entrancesCount - 1);
+            floorCount = (apartment / apartmentsQuantityFloor + 1) - floorQuantity * (entrancesCount - 1);
         }
 
-        String location = switch (apartment % apartmensQuantityFloor) {
+        String location = switch (apartment % apartmentsQuantityFloor) {
             case (0) -> "справа от лифта, вправо";
             case (1) -> "слева от лифта, влево";
             case (2) -> "слева от лифта, вправо";
