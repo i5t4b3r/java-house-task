@@ -2,50 +2,48 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Введите количество этажей в здании: ");
-        int floor = scanner.nextInt();
+        int floorQuantity = scanner.nextInt();
 
         System.out.print("Введите количество подъездов в здании: ");
-        int entrance = scanner.nextInt();
+        int entranceQuantity = scanner.nextInt();
 
         System.out.print("Введите нужную квартиру: ");
         int apartment = scanner.nextInt();
 
         scanner.close();
 
-        getLocation(floor, entrance, apartment);
+        printLocation(floorQuantity, entranceQuantity, apartment);
     }
 
-    static void getLocation(int floors, int entrances, int apartment) {
-
-        int apartmentsOnEntrance = floors * 4;
-        int apartmentsCount = apartmentsOnEntrance * entrances;
-        int entrancesCount = (apartment - 1) / apartmentsOnEntrance + 1;
+    static void printLocation(int floorQuantity, int entrancesQuantity, int apartment) {
+        int apartmentsEntranceCount = floorQuantity * 4;
+        int apartmentsCount = apartmentsEntranceCount * entrancesQuantity;
+        int entrancesCount = (apartment - 1) / apartmentsEntranceCount + 1;
+        final int APARTMENTS_COUNT_FLOOR = 4;
 
         if (apartment > apartmentsCount) {
             System.out.println("err");
+            return;
         }
 
         int floorCount;
 
-        if (apartment % 4 == 0) {
-            floorCount = (apartment / 4) - floors * (entrancesCount - 1);
+        if (apartment % APARTMENTS_COUNT_FLOOR == 0) {
+            floorCount = (apartment / APARTMENTS_COUNT_FLOOR) - floorQuantity * (entrancesCount - 1);
         } else {
-            floorCount = (apartment / 4 + 1) - floors * (entrancesCount - 1);
+            floorCount = (apartment / APARTMENTS_COUNT_FLOOR + 1) - floorQuantity * (entrancesCount - 1);
         }
 
-        String location = switch (apartment % 4) {
+        String location = switch (apartment % APARTMENTS_COUNT_FLOOR) {
+            case (0) -> "справа от лифта, вправо";
             case (1) -> "слева от лифта, влево";
             case (2) -> "слева от лифта, вправо";
             case (3) -> "справа от лифта, влево";
-            case (0) -> "справа от лифта, вправо";
             default -> "";
         };
 
         System.out.println(entrancesCount + " подъезд, " + floorCount + " этаж, " + location);
-
     }
 }
